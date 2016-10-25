@@ -10,8 +10,8 @@ import Foundation
 
 public protocol ExecutorObserver {
     
-    func did<T : Executor>(becomeReady operation: T) -> Void
-    func did<T : Executor>(start operation : T) -> Void
-    func did<T : Executor>(finish operation : T) -> Void
-    func did<T : Executor>(cancel operation: T) -> Void
+    func did(becomeReady operation: AsyncOperation) -> Void
+    func did(start operation: AsyncOperation) -> Void
+    func did(finish operation : AsyncOperation) -> Void
+    func did(cancel operation: AsyncOperation) -> Void
 }

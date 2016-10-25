@@ -13,14 +13,12 @@ public protocol Executor {
     var observers : Array<ExecutorObserver> { get set }
     func execute() -> Void
     func finish() -> Void
-    mutating func add<T : ExecutorObserver>(observer: T) -> Void
+    mutating func add(observer: ExecutorObserver) -> Void
 }
 
 extension Executor {
     
-    public mutating func add<T : ExecutorObserver>(observer: T) {
-        
-        print(#function)
+    public mutating func add(observer: ExecutorObserver) -> Void {
         observers.append(observer)
     }
 }

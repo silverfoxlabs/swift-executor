@@ -9,7 +9,7 @@
 import Foundation
 
 public class AsyncOperation : Operation, Executor {
-    
+        
     private let _stateLock : NSLock = NSLock()
     
     fileprivate enum State : CustomStringConvertible {
@@ -100,30 +100,27 @@ public class AsyncOperation : Operation, Executor {
     }
     
     init(identifier: String) {
-        print(#function)
+
         self.identifier = identifier
         super.init()
         _state = .ready
-        print(identifier)
     }
     
     deinit {
         observers.removeAll()
     }
     
-    public func execute() -> Void {
-        print(#function)
-    }
+    public func execute() -> Void {}
+    
+    public override func main() {}
     
     override public func cancel() {
-        print(#function)
         super.cancel()
         _state = .cancelled
         
     }
     
     override public func start() {
-        print(#function)
         
         if isCancelled {
             _state = .finished
@@ -134,12 +131,7 @@ public class AsyncOperation : Operation, Executor {
         execute()
     }
     
-    public override func main() {
-        print(#function)
-    }
-    
     public func finish() {
-        print(#function)
         _state = .finished
         completionBlock?()
     }
