@@ -51,9 +51,20 @@ class swift_executorTests: XCTestCase {
         XCTAssertEqual(op.observers.last! as! TestEnumObserver, third)
     }
     
+    func testThatCanCancel() -> Void {
+        
+        var op = TestOperation(testValue: "mytestvalue")
+        let obs = TestClassObserver(testValue: "class")
+        op.add(observer: obs)
+        op.cancel()
+        XCTAssertTrue(op.isCancelled == true)
+    }
+    
     static var allTests : [(String, (swift_executorTests) -> () throws -> Void)] {
         return [
             ("testAsyncOperationCanChangeState", testAsyncOperationCanChangeState),
+            ("testThatCanAddObserver", testThatCanAddObserver),
+            ("testThatCanCancel", testThatCanCancel)
         ]
     }
 }
