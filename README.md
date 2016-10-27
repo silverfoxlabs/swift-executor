@@ -6,8 +6,9 @@ Leverages ``` Operation ``` & ``` OperationQueue ```.  ``` AsyncOperation ``` is
 
 ####Additional Reading:
 ######Concurrency Programming Guide:
-
+[Apple Concurrency Programming Guide](https://developer.apple.com/library/content/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008091-CH1-SW1)
 ######Operation Class Reference:
+[Apple Operation Class Reference](https://developer.apple.com/reference/foundation/operation)
 
 ##Supported Platforms:
 ```macOS``` ```iOS``` ```tvOS``` ```watchOS``` ```linux```
@@ -18,7 +19,10 @@ Leverages ``` Operation ``` & ``` OperationQueue ```.  ``` AsyncOperation ``` is
 add to your ```Package.swift```:
 
 ```
-Package swift code here:
+dependencies: [
+   .Package(url: "https://github.com/dcilia
+   /swift-executor", majorVersion: 1, minor: 1)
+])
 ```
 ***Carthage:***
 
@@ -31,7 +35,7 @@ github "dcilia/swift-executor"
 
 ***CocoaPods***
 
-What youre using cocoapods?
+Coming soon
 
 ##How to use:
 
@@ -69,28 +73,27 @@ create an observer for your ```AsyncOperation``` ...
 ```
 struct FooObserver : ExecutorObserver {
     
-    func did<Foo>(start operation: Foo) {
+    func did(start operation: AsyncOperation) {
         dump(self)
         print(#function)
     }
     
-    func did<Foo>(cancel operation: Foo) {
+    func did(cancel operation: AsyncOperation) {
         dump(self)
         print(#function)
     }
     
-    func did<Foo>(finish operation: Foo) {
+    func did(finish operation: AsyncOperation) {
         dump(self)
         print(#function)
     }
     
-    func did<Foo>(becomeReady operation: Foo) {
+    func did(becomeReady operation: AsyncOperation) {
         dump(self)
         print(#function)
     }
 }
 ```
-Note that we set the generic constraint parameter to use our concrete ```AyncOperation``` subclass. ``` did<Foo>...```
 
 ```
 let observer = FooObserver()
