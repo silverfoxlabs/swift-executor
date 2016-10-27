@@ -35,7 +35,11 @@ github "dcilia/swift-executor"
 
 ***CocoaPods***
 
-Coming soon
+There is a ```podspec``` in the repo, but ```cocoapods``` seems to run into a crash while checking out this repo.  Feel free to try it, but it might not work.
+
+in your ```Podfile```:
+
+```pod 'swift-executor', :git=> 'https://github.com/dcilia/swift-executor'```
 
 ##How to use:
 
