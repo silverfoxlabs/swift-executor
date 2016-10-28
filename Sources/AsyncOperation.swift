@@ -99,7 +99,7 @@ open class AsyncOperation : Operation, Executor {
         return _state == .executing
     }
     
-    init(identifier: String) {
+    public init(identifier: String) {
 
         self.identifier = identifier
         super.init()
