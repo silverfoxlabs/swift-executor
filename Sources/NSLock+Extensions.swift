@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension NSLock {
+public extension NSLock {
     
     func criticalScope<T>(closure: (Void) -> T) -> T {
         lock()

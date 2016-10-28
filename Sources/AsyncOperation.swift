@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class AsyncOperation : Operation, Executor {
+open class AsyncOperation : Operation, Executor {
         
     private let _stateLock : NSLock = NSLock()
     
@@ -44,7 +44,7 @@ public class AsyncOperation : Operation, Executor {
     private(set) var identifier : String
     
     //Overrides
-    override public var isAsynchronous: Bool { return true }
+    override open var isAsynchronous: Bool { return true }
     
     fileprivate var _state: State = .notReady {
         willSet {
@@ -83,19 +83,19 @@ public class AsyncOperation : Operation, Executor {
         }
     }
     
-    public override var isReady: Bool {
+    open override var isReady: Bool {
         return _state == .ready
     }
     
-    public override var isCancelled: Bool {
+    open override var isCancelled: Bool {
         return _state == .cancelled
     }
     
-    public override var isFinished: Bool {
+    open override var isFinished: Bool {
         return _state == .finished
     }
     
-    public override var isExecuting: Bool {
+    open override var isExecuting: Bool {
         return _state == .executing
     }
     
@@ -112,15 +112,15 @@ public class AsyncOperation : Operation, Executor {
     
     public func execute() -> Void {}
     
-    public override func main() {}
+    open override func main() {}
     
-    override public func cancel() {
+    override open func cancel() {
         super.cancel()
         _state = .cancelled
         
     }
     
-    override public func start() {
+    override open func start() {
         
         if isCancelled {
             _state = .finished
