@@ -12,6 +12,15 @@ Leverages ``` Operation ``` & ``` OperationQueue ```.  ``` AsyncOperation ``` is
 
 ##Supported Platforms:
 ```macOS``` ```iOS``` ```tvOS``` ```watchOS``` ```linux```
+
+##Minimum OS Versions Supported:
+
+``` macOS 10.9 ```
+``` iOS 8.0 ```
+``` tvOS 9.0 ```
+``` watchOS 2.0 ```
+``` linux - ubuntu 16.04 ```
+
 ##Installation:
 
 ***Swift Package Manager:***
@@ -103,8 +112,6 @@ struct FooObserver : ExecutorObserver {
 let observer = FooObserver()
 p.add(observer: observer)
 ```
-the ```add<T : ExecutorObserver> ... ``` function adds an observer to the array of ```ExecutorObserver``` in the ```AsyncOperation```.  This allows you to have multiple observers to an operation.
-
 ```
 let first = FooObserver() //observer that is a class
 let second = Barz() //observer that is a struct
