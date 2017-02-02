@@ -7,34 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		66BBB7FA1DBFBA4C002933C2 /* Executor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BBB7F91DBFBA4C002933C2 /* Executor.swift */; };
-		66BBB7FC1DBFBA71002933C2 /* ExecutorObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BBB7FB1DBFBA71002933C2 /* ExecutorObserver.swift */; };
-		66BBB7FE1DBFBA79002933C2 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BBB7FD1DBFBA79002933C2 /* AsyncOperation.swift */; };
-		66BBB8001DBFBAB4002933C2 /* NSLock+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BBB7FF1DBFBAB4002933C2 /* NSLock+Extensions.swift */; };
-		"__src_cc_ref_Tests/swift-executorTests/swift_executorTests.swift" /* swift_executorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Tests/swift-executorTests/swift_executorTests.swift" /* swift_executorTests.swift */; };
+		OBJ_25 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AsyncOperation.swift */; };
+		OBJ_26 /* Executor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* Executor.swift */; };
+		OBJ_27 /* ExecutorObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* ExecutorObserver.swift */; };
+		OBJ_28 /* NSLock+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* NSLock+Extensions.swift */; };
+		OBJ_35 /* swift_executorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* swift_executorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		66BBB7F91DBFBA4C002933C2 /* Executor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Executor.swift; sourceTree = "<group>"; };
-		66BBB7FB1DBFBA71002933C2 /* ExecutorObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecutorObserver.swift; sourceTree = "<group>"; };
-		66BBB7FD1DBFBA79002933C2 /* AsyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
-		66BBB7FF1DBFBAB4002933C2 /* NSLock+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLock+Extensions.swift"; sourceTree = "<group>"; };
-		__PBXFileRef_ExecutorKit.xcodeproj/Configs/Project.xcconfig /* ExecutorKit.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ExecutorKit.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
-		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		"__PBXFileRef_Tests/swift-executorTests/swift_executorTests.swift" /* swift_executorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swift_executorTests.swift; sourceTree = "<group>"; };
-		"_____Product_ExecutorKit" /* ExecutorKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ExecutorKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"_____Product_swift_executorTests" /* swift_executorTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; name = swift_executorTests.xctest; path = "swift-executorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_10 /* Executor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Executor.swift; sourceTree = "<group>"; };
+		OBJ_11 /* ExecutorObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecutorObserver.swift; sourceTree = "<group>"; };
+		OBJ_12 /* NSLock+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLock+Extensions.swift"; sourceTree = "<group>"; };
+		OBJ_15 /* swift_executorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swift_executorTests.swift; sourceTree = "<group>"; };
+		OBJ_16 /* build */ = {isa = PBXFileReference; lastKnownFileType = folder; path = build; sourceTree = SOURCE_ROOT; };
+		OBJ_18 /* ExecutorKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ExecutorKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_19 /* swift_executorTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; name = swift_executorTests.xctest; path = "swift-executorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		OBJ_9 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		"___LinkPhase_ExecutorKit" /* Frameworks */ = {
+		OBJ_29 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		"___LinkPhase_swift_executorTests" /* Frameworks */ = {
+		OBJ_36 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
@@ -44,88 +44,73 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		TestProducts_ /* Tests */ = {
+		OBJ_13 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				"_____Product_swift_executorTests" /* swift_executorTests.xctest */,
+				OBJ_14 /* swift-executorTests */,
 			);
-			name = Tests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
-		"___RootGroup_" = {
+		OBJ_14 /* swift-executorTests */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Package.swift /* Package.swift */,
-				"_____Configs_" /* Configs */,
-				"_____Sources_" /* Sources */,
-				"_______Tests_" /* Tests */,
-				"____Products_" /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		"____Products_" /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				TestProducts_ /* Tests */,
-				"_____Product_ExecutorKit" /* ExecutorKit.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		"_____Configs_" /* Configs */ = {
-			isa = PBXGroup;
-			children = (
-				__PBXFileRef_ExecutorKit.xcodeproj/Configs/Project.xcconfig /* ExecutorKit.xcodeproj/Configs/Project.xcconfig */,
-			);
-			name = Configs;
-			sourceTree = "<group>";
-		};
-		"_____Sources_" /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				"_______Group_ExecutorKit" /* ExecutorKit */,
-			);
-			name = Sources;
-			sourceTree = "<group>";
-		};
-		"_______Group_ExecutorKit" /* ExecutorKit */ = {
-			isa = PBXGroup;
-			children = (
-				66BBB7F91DBFBA4C002933C2 /* Executor.swift */,
-				66BBB7FB1DBFBA71002933C2 /* ExecutorObserver.swift */,
-				66BBB7FD1DBFBA79002933C2 /* AsyncOperation.swift */,
-				66BBB7FF1DBFBAB4002933C2 /* NSLock+Extensions.swift */,
-			);
-			name = ExecutorKit;
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		"_______Group_swift_executorTests" /* swift-executorTests */ = {
-			isa = PBXGroup;
-			children = (
-				"__PBXFileRef_Tests/swift-executorTests/swift_executorTests.swift" /* swift_executorTests.swift */,
+				OBJ_15 /* swift_executorTests.swift */,
 			);
 			name = "swift-executorTests";
 			path = "Tests/swift-executorTests";
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
-		"_______Tests_" /* Tests */ = {
+		OBJ_17 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				"_______Group_swift_executorTests" /* swift-executorTests */,
+				OBJ_18 /* ExecutorKit.framework */,
+				OBJ_19 /* swift_executorTests.xctest */,
 			);
-			name = Tests;
+			name = Products;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		OBJ_5 /*  */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_6 /* Package.swift */,
+				OBJ_7 /* Sources */,
+				OBJ_13 /* Tests */,
+				OBJ_16 /* build */,
+				OBJ_17 /* Products */,
+			);
+			name = "";
 			sourceTree = "<group>";
+		};
+		OBJ_7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_8 /* ExecutorKit */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		OBJ_8 /* ExecutorKit */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_9 /* AsyncOperation.swift */,
+				OBJ_10 /* Executor.swift */,
+				OBJ_11 /* ExecutorObserver.swift */,
+				OBJ_12 /* NSLock+Extensions.swift */,
+			);
+			name = ExecutorKit;
+			path = Sources;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		"______Target_ExecutorKit" /* ExecutorKit */ = {
+		OBJ_20 /* ExecutorKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = "_______Confs_ExecutorKit" /* Build configuration list for PBXNativeTarget "ExecutorKit" */;
+			buildConfigurationList = OBJ_21 /* Build configuration list for PBXNativeTarget "ExecutorKit" */;
 			buildPhases = (
-				CompilePhase_ExecutorKit /* Sources */,
-				"___LinkPhase_ExecutorKit" /* Frameworks */,
+				OBJ_24 /* Sources */,
+				OBJ_29 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,15 +118,15 @@
 			);
 			name = ExecutorKit;
 			productName = ExecutorKit;
-			productReference = "_____Product_ExecutorKit" /* ExecutorKit.framework */;
+			productReference = OBJ_18 /* ExecutorKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		"______Target_swift_executorTests" /* swift-executorTests */ = {
+		OBJ_30 /* swift-executorTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = "_______Confs_swift_executorTests" /* Build configuration list for PBXNativeTarget "swift-executorTests" */;
+			buildConfigurationList = OBJ_31 /* Build configuration list for PBXNativeTarget "swift-executorTests" */;
 			buildPhases = (
-				CompilePhase_swift_executorTests /* Sources */,
-				"___LinkPhase_swift_executorTests" /* Frameworks */,
+				OBJ_34 /* Sources */,
+				OBJ_36 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,63 +134,67 @@
 			);
 			name = "swift-executorTests";
 			productName = swift_executorTests;
-			productReference = "_____Product_swift_executorTests" /* swift_executorTests.xctest */;
+			productReference = OBJ_19 /* swift_executorTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		__RootObject_ /* Project object */ = {
+		OBJ_1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 9999;
 			};
-			buildConfigurationList = "___RootConfs_" /* Build configuration list for PBXProject "ExecutorKit" */;
+			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "ExecutorKit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = "___RootGroup_";
-			productRefGroup = "____Products_" /* Products */;
+			mainGroup = OBJ_5 /*  */;
+			productRefGroup = OBJ_17 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				"______Target_ExecutorKit" /* ExecutorKit */,
-				"______Target_swift_executorTests" /* swift-executorTests */,
+				OBJ_20 /* ExecutorKit */,
+				OBJ_30 /* swift-executorTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		CompilePhase_ExecutorKit /* Sources */ = {
+		OBJ_24 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				66BBB7FA1DBFBA4C002933C2 /* Executor.swift in Sources */,
-				66BBB8001DBFBAB4002933C2 /* NSLock+Extensions.swift in Sources */,
-				66BBB7FE1DBFBA79002933C2 /* AsyncOperation.swift in Sources */,
-				66BBB7FC1DBFBA71002933C2 /* ExecutorObserver.swift in Sources */,
+				OBJ_25 /* AsyncOperation.swift in Sources */,
+				OBJ_26 /* Executor.swift in Sources */,
+				OBJ_27 /* ExecutorObserver.swift in Sources */,
+				OBJ_28 /* NSLock+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CompilePhase_swift_executorTests /* Sources */ = {
+		OBJ_34 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				"__src_cc_ref_Tests/swift-executorTests/swift_executorTests.swift" /* swift_executorTests.swift in Sources */,
+				OBJ_35 /* swift_executorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		_ReleaseConf_ExecutorKit /* Release */ = {
+		OBJ_22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ExecutorKit.xcodeproj/ExecutorKit_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -213,28 +202,19 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ExecutorKit;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SWIFT_VERSION = 3.0;
+				TARGET_NAME = ExecutorKit;
 			};
-			name = Release;
+			name = Debug;
 		};
-		_ReleaseConf_swift_executorTests /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
-				INFOPLIST_FILE = ExecutorKit.xcodeproj/swift_executorTests_Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		"___DebugConf_ExecutorKit" /* Debug */ = {
+		OBJ_23 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ExecutorKit.xcodeproj/ExecutorKit_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -242,70 +222,119 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ExecutorKit;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				TARGET_NAME = ExecutorKit;
+			};
+			name = Release;
+		};
+		OBJ_3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				USE_HEADERMAP = NO;
+				VALID_ARCHS = "i386 x86_64 armv7 arm64 armv7s";
 			};
 			name = Debug;
 		};
-		"___DebugConf_swift_executorTests" /* Debug */ = {
+		OBJ_32 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ExecutorKit.xcodeproj/swift_executorTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				TARGET_NAME = "swift-executorTests";
 			};
 			name = Debug;
 		};
-		"_____Release_" /* Release */ = {
+		OBJ_33 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = __PBXFileRef_ExecutorKit.xcodeproj/Configs/Project.xcconfig /* ExecutorKit.xcodeproj/Configs/Project.xcconfig */;
 			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = ExecutorKit.xcodeproj/swift_executorTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				TARGET_NAME = "swift-executorTests";
 			};
 			name = Release;
 		};
-		"_______Debug_" /* Debug */ = {
+		OBJ_4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = __PBXFileRef_ExecutorKit.xcodeproj/Configs/Project.xcconfig /* ExecutorKit.xcodeproj/Configs/Project.xcconfig */;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_OPTIMIZATION_LEVEL = s;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 3.0;
+				USE_HEADERMAP = NO;
+				VALID_ARCHS = "i386 x86_64 armv7 arm64 armv7s";
 			};
-			name = Debug;
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		"___RootConfs_" /* Build configuration list for PBXProject "ExecutorKit" */ = {
+		OBJ_2 /* Build configuration list for PBXProject "ExecutorKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				"_______Debug_" /* Debug */,
-				"_____Release_" /* Release */,
+				OBJ_3 /* Debug */,
+				OBJ_4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		"_______Confs_ExecutorKit" /* Build configuration list for PBXNativeTarget "ExecutorKit" */ = {
+		OBJ_21 /* Build configuration list for PBXNativeTarget "ExecutorKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				"___DebugConf_ExecutorKit" /* Debug */,
-				_ReleaseConf_ExecutorKit /* Release */,
+				OBJ_22 /* Debug */,
+				OBJ_23 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		"_______Confs_swift_executorTests" /* Build configuration list for PBXNativeTarget "swift-executorTests" */ = {
+		OBJ_31 /* Build configuration list for PBXNativeTarget "swift-executorTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				"___DebugConf_swift_executorTests" /* Debug */,
-				_ReleaseConf_swift_executorTests /* Release */,
+				OBJ_32 /* Debug */,
+				OBJ_33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = __RootObject_ /* Project object */;
+	rootObject = OBJ_1 /* Project object */;
 }
