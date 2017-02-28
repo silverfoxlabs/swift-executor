@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "swift-executor"
-  s.version      = "1.5.4"
+  s.version      = "1.5.5"
   s.summary      = "A lightweight simple implementation of Foundation's Concurrent Operation"
 
   # This description is used to generate tags and improve search results.
