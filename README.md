@@ -15,8 +15,8 @@ Leverages ``` Operation ``` & ``` OperationQueue ```.  ``` AsyncOperation ``` is
 
 ##Minimum OS Versions Supported:
 
-``` macOS 10.9 ```
-``` iOS 8.0 ```
+``` macOS 10.10 ```
+``` iOS 9.0 ```
 ``` tvOS 9.0 ```
 ``` watchOS 2.0 ```
 ``` linux - ubuntu 16.04 ```
@@ -43,8 +43,6 @@ github "dcilia/swift-executor"
 
 
 ***CocoaPods***
-
-There is a ```podspec``` in the repo, but ```cocoapods``` seems to run into a crash while checking out this repo.  Feel free to try it, but it might not work.
 
 in your ```Podfile```:
 
