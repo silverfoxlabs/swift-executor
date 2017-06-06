@@ -66,15 +66,19 @@ open class AsyncOperation : Operation, Executor {
             
             switch _state {
             case .ready:
+                didBecomeReady?(self)
                 observers.forEach { $0.did(becomeReady: self) }
                 break
             case .executing:
+                didStart?(self)
                 observers.forEach { $0.did(start: self) }
                 break
             case .finished:
+                didFinish?(self)
                 observers.forEach { $0.did(finish: self) }
                 break
             case .cancelled:
+                didCancel?(self)
                 observers.forEach { $0.did(cancel: self) }
                 break
             default:
@@ -105,6 +109,12 @@ open class AsyncOperation : Operation, Executor {
         super.init()
         _state = .ready
     }
+    
+    var didBecomeReady : ((_ operation : AsyncOperation) -> Void)?
+    var didStart : ((_ operation : AsyncOperation) -> Void)?
+    var didFinish : ((_ operation : AsyncOperation) -> Void)?
+    var didCancel : ((_ operation : AsyncOperation) -> Void)?
+    
     
     deinit {
         observers.removeAll()

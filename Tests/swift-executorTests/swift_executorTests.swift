@@ -60,6 +60,36 @@ class swift_executorTests: XCTestCase {
         XCTAssertTrue(op.isCancelled == true)
     }
     
+    func testThatCanUseClosures() -> Void {
+        let op = TestOperation(testValue: "mytestvalue")
+        op.didBecomeReady = { op in
+
+            print(op.debugDescription)
+            XCTAssert(op.isReady == true)
+            
+        }
+        op.didStart = { op in
+            print(op.debugDescription)
+            XCTAssert(op.isExecuting == true)
+        }
+        op.didFinish = { op in
+            print(op.debugDescription)
+            XCTAssert(op.isFinished == true)
+        }
+        
+        op.start()
+        
+    }
+    
+    func testThatCanCancelWithClosure() -> Void {
+        
+        let op = TestOperation(testValue: "mytestvalue")
+        op.didCancel = { op in
+            XCTAssert(op.isCancelled == true)
+        }
+        op.cancel()
+    }
+    
     static var allTests : [(String, (swift_executorTests) -> () throws -> Void)] {
         return [
             ("testAsyncOperationCanChangeState", testAsyncOperationCanChangeState),
