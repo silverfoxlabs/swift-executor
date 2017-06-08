@@ -8,8 +8,18 @@
 
 import Foundation
 
-open class AsyncOperation : Operation, Executor {
-        
+fileprivate struct KVO {
+    static let IsReadyKeyPath : String = "isReady"
+    static let IsExecutingKeyPath : String = "isExecuting"
+    static let IsFinishedKeyPath : String = "isFinished"
+    static let IsCancelled : String = "isCancelled"
+    static let NotReady : String = "notReady"
+}
+
+open class AsyncOperation<Observer : ExecutorObserver> : Operation, Executor where Observer.T == AsyncOperation {
+    
+    public typealias T = Observer
+    
     private let _stateLock : NSLock = NSLock()
     
     fileprivate enum State : CustomStringConvertible {
@@ -31,15 +41,7 @@ open class AsyncOperation : Operation, Executor {
         }
     }
     
-    fileprivate struct KVO {
-        static let IsReadyKeyPath : String = "isReady"
-        static let IsExecutingKeyPath : String = "isExecuting"
-        static let IsFinishedKeyPath : String = "isFinished"
-        static let IsCancelled : String = "isCancelled"
-        static let NotReady : String = "notReady"
-    }
-    
-    public var observers: Array<ExecutorObserver> = []
+    public var observers: [T] = []
     
     private(set) var identifier : String
     
@@ -145,4 +147,23 @@ open class AsyncOperation : Operation, Executor {
         _state = .finished
         completionBlock?()
     }
+    
+    public func add(observer: T) {
+        observers.append(observer)
+    }
+    
+    public func remove(observer: T) {
+        
+        let lhs = AnyExecutorObserver(observer)
+        
+        for (index, item) in observers.enumerated() {
+            
+            let rhs = AnyExecutorObserver(item)
+            
+            if lhs === rhs {
+                observers.remove(at: index)
+            }
+        }
+    }
 }
+

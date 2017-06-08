@@ -15,7 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		66F17DFD1EE6B0500042A9F3 /* ExecutorKit.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = ExecutorKit.playground; path = ../Playgrounds/ExecutorKit.playground; sourceTree = "<group>"; };
+		66F17DFD1EE6B0500042A9F3 /* ExecutorKit.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = ExecutorKit.playground; path = ../Playgrounds/ExecutorKit.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		OBJ_10 /* ExecutorObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecutorObserver.swift; sourceTree = "<group>"; };
 		OBJ_11 /* NSLock+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLock+Extensions.swift"; sourceTree = "<group>"; };
 		OBJ_14 /* swift_executorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swift_executorTests.swift; sourceTree = "<group>"; };
