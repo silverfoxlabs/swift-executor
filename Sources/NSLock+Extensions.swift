@@ -10,7 +10,7 @@ import Foundation
 
 public extension NSLock {
     
-    func criticalScope<T>(closure: (Void) -> T) -> T {
+    func criticalScope<T>(closure: () -> T) -> T {
         lock()
         let value = closure()
         unlock()
