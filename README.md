@@ -1,7 +1,7 @@
 # swift-executor
-A lightweight simple implementation of Foundation's Concurrent Operation
+A lightweight simple implementation of ```Foundation``` framework ```Operation```
 
-##Introduction
+# Introduction
 Leverages ``` Operation ``` & ``` OperationQueue ```.  ``` AsyncOperation ``` is a ```concurrent operation``` that generates the appropriate ```KVO``` notifications as required by a concurrent ```Operation``` subclass.
 
 # Additional Reading:
@@ -64,7 +64,7 @@ in your ```Podfile```:
 
 The main class to use is ```AsyncOperation```:
 
-```
+``` Swift
 class Foo : AsyncOperation {
     
     var bar: String = "Hello World"
@@ -84,7 +84,7 @@ class Foo : AsyncOperation {
 
 then ...
 
-```
+``` Swift
 var p = Foo(identifier: "com.your.bundle.id")
 p.completionBlock = {
     print("I am a completion block")
