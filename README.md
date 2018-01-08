@@ -4,24 +4,36 @@ A lightweight simple implementation of Foundation's Concurrent Operation
 ##Introduction
 Leverages ``` Operation ``` & ``` OperationQueue ```.  ``` AsyncOperation ``` is a ```concurrent operation``` that generates the appropriate ```KVO``` notifications as required by a concurrent ```Operation``` subclass.
 
-####Additional Reading:
-######Concurrency Programming Guide:
+# Additional Reading:
 [Apple Concurrency Programming Guide](https://developer.apple.com/library/content/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008091-CH1-SW1)
-######Operation Class Reference:
+
 [Apple Operation Class Reference](https://developer.apple.com/reference/foundation/operation)
 
-##Supported Platforms:
-```macOS``` ```iOS``` ```tvOS``` ```watchOS``` ```linux```
 
-##Minimum OS Versions Supported:
+# Supported Platforms:
+```macOS``` 
+
+```iOS``` 
+
+```tvOS``` 
+
+```watchOS``` 
+
+```linux```
+
+# Minimum OS Versions Supported:
 
 ``` macOS 10.10 ```
-``` iOS 9.0 ```
-``` tvOS 9.0 ```
-``` watchOS 2.0 ```
-``` linux - ubuntu 16.04 ```
 
-##Installation:
+``` iOS 9.0 ```
+
+``` tvOS 9.0 ```
+
+``` watchOS 2.0 ```
+
+``` linux ```
+
+# Installation:
 
 ***Swift Package Manager:***
 
@@ -48,7 +60,7 @@ in your ```Podfile```:
 
 ```pod 'swift-executor', :git=> 'https://github.com/dcilia/swift-executor'```
 
-##How to use:
+# How to use:
 
 The main class to use is ```AsyncOperation```:
 
@@ -81,7 +93,7 @@ p.completionBlock = {
 
 create an observer for your ```AsyncOperation``` ...
 
-```
+``` swift
 struct FooObserver : ExecutorObserver {
     
     func did(start operation: AsyncOperation) {
@@ -106,11 +118,11 @@ struct FooObserver : ExecutorObserver {
 }
 ```
 
-```
+``` swift
 let observer = FooObserver()
 p.add(observer: observer)
 ```
-```
+```  swift
 let first = FooObserver() //observer that is a class
 let second = Barz() //observer that is a struct
 p.add(observer: observer)
@@ -123,7 +135,7 @@ you can also use the default properties of ```Operation```
 
 Lastly, to finally execute your operation simply follow the accepted pattern of ```Operation``` & ```OperationQueue```
 
-```
+``` Swift
 let queue = OperationQueue()
 queue.name = "com.someQueue"
 queue.addOperation(operation)
