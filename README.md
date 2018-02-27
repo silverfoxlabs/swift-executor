@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/dcilia/swift-executor.svg?branch=master)](https://travis-ci.org/dcilia/swift-executor)
+
 # swift-executor
 A lightweight simple implementation of ```Foundation``` framework ```Operation```
 
@@ -11,27 +13,10 @@ Leverages ``` Operation ``` & ``` OperationQueue ```.  ``` AsyncOperation ``` is
 
 
 # Supported Platforms:
-```macOS``` 
-
-```iOS``` 
-
-```tvOS``` 
-
-```watchOS``` 
-
-```linux```
+```macOS``` ```iOS``` ```tvOS``` ```watchOS``` ```linux```
 
 # Minimum OS Versions Supported:
-
-``` macOS 10.10 ```
-
-``` iOS 9.0 ```
-
-``` tvOS 9.0 ```
-
-``` watchOS 2.0 ```
-
-``` linux ```
+``` macOS 10.10 ``` ``` iOS 9.0 ``` ``` tvOS 9.0 ``` ``` watchOS 2.0 ``` ``` linux ```
 
 # Installation:
 
