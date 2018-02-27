@@ -1,0 +1,26 @@
+sudo: enabled
+os: osx
+language: swift
+osx_image: xcode9.3beta
+xcode_project: ExecutorKit.xcodeproj
+xcode_scheme: ExecutorKit
+xcode_sdk: macosx
+env:
+  global:
+  - REPO=dcilia/swift-executor
+  - FRAMEWORK_NAME=ExecutorKit
+before_install:
+- brew update
+- brew install carthage
+before_script: 
+script:
+- carthage build --no-skip-current
+- carthage archive $FRAMEWORK_NAME
+deploy:
+  provider: releases
+  api_key:
+    secure: C8Xc0TGJYAg0R+ZVLBe4ffv1OqSCtXlgrGb2Kxt1BPmqhsSg8UL5d0rP+0I+vNags1q/HO1TR3gCCrza6S6CKL2ypdT/TnSHXZVV8uyvcT8znVJzmR50deaK6rNrVqBstTIy7iVJknE4bB3wOhYtzGoQtLOthzIvZaK2a8m9D4M9fj4nEiIhgdxqcKdrRSa7VeR7QfGpSTf2ZdG4SHnztU9fIWVjKLJPHogXYz+XI8UcYzHpcFE+MA1vKAqmp/txqm1PPcL6r6g1ue3den9GKungLkwRfWVCv0I2IjSx7vjZZB2d20FmUFbEApiS4B00B6/KqLGiBgMN0MSWWXnUFpSPwswHnc8rtllk/ymv6H7L5E5dhvRXHFr53tloeE6gPO8cdhFW16JtC01I+nCXldCHv/Tp3qRqj0qvQ7CjbRBaNDTgYoCwhKvZngVbfnmFYWNyeKW/s3m8lRc/iKHvfZMUqP5SOykeMcDC/+MxT2cgwpoE9l1PfoyYyfhHUJZlwtehsStKdaCfekJKXpAlI0jD17oBKFCIZg80fkZGUhf0sjTdAknJ0fwnnt7+S9Web5vO9GUJUWtdp1u2k1Whcvdag2wzVVlFPAVLYNwKFKsiMpg5zPA7RkbkqvBirclyz2zx8CZd2cHIs1zy8D5O+MEKlsUB9+xVGDYmukUsuqw=
+  file: ExecutorKit.framework.zip
+  on:
+    repo: $REPO
+    tags: true
