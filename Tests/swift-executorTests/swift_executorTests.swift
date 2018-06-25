@@ -20,6 +20,8 @@ class swift_executorTests: XCTestCase {
         op.add(observer: first)
         op.add(observer: second)
         op.add(observer: third)
+
+
         exp = expectation(description: "operationTimeout")
         op.completionBlock = {
             exp?.fulfill()
@@ -29,7 +31,6 @@ class swift_executorTests: XCTestCase {
         waitForExpectations(timeout: 60) { (e: Error?) in
            
             if let _ = e {
-             
                 XCTAssertFalse(true)
             }
         }
@@ -45,10 +46,16 @@ class swift_executorTests: XCTestCase {
         op.add(observer: first)
         op.add(observer: second)
         op.add(observer: third)
-        
-        XCTAssertEqual(op.observers.first! as! TestClassObserver, first)
-        XCTAssertEqual(op.observers[1] as! TestStructObserver, second)
-        XCTAssertEqual(op.observers.last! as! TestEnumObserver, third)
+
+
+        let _first = op.observers.first as? TestClassObserver
+        let _second = op.observers[1] as? TestStructObserver
+        let _last = op.observers.last as? TestEnumObserver
+
+
+        XCTAssertEqual(_first, first)
+        XCTAssertEqual(_second, second)
+        XCTAssertEqual(_last, third)
     }
 
     func testThatCanRemoveObserver() -> Void {
@@ -62,9 +69,14 @@ class swift_executorTests: XCTestCase {
         op.add(observer: second)
         op.add(observer: third)
 
-        XCTAssertEqual(op.observers.first! as! TestClassObserver, first)
-        XCTAssertEqual(op.observers[1] as! TestStructObserver, second)
-        XCTAssertEqual(op.observers.last! as! TestEnumObserver, third)
+        let _first = op.observers.first as? TestClassObserver
+        let _second = op.observers[1] as? TestStructObserver
+        let _last = op.observers.last as? TestEnumObserver
+
+
+        XCTAssertEqual(_first, first)
+        XCTAssertEqual(_second, second)
+        XCTAssertEqual(_last, third)
 
         print(op.observers.count)
 
@@ -124,17 +136,17 @@ public class TestOperation: AsyncOperation {
         
         super.init(identifier: testValue)
     }
-    
-    override public func execute() {
+
+    public override func execute() {
         print(#function)
         XCTAssert(isCancelled == false)
         XCTAssert(isReady == false)
         XCTAssert(isFinished == false)
         XCTAssert(isExecuting == true)
-        
+
         finish()
     }
-    
+
     override public func finish() {
         super.finish()
         print(#function)
@@ -192,52 +204,56 @@ struct TestStructObserver : ExecutorObserver {
         name = testValue
     }
 
+    func did<T>(becomeReady operation: T) where T : Executor {
 
-    func did<T>(becomeReady operation: T) where T : AsyncOperation {
+        guard let _operation = operation as? AsyncOperation else {
+            XCTAssert(true)
+            return
+        }
 
-        print(#function)
+        XCTAssert(_operation.isCancelled == false)
+        XCTAssert(_operation.isReady == true)
+        XCTAssert(_operation.isFinished == false)
+        XCTAssert(_operation.isExecuting == false)
     }
 
-    func did<T>(start operation: T) where T : AsyncOperation {
+    func did<T>(start operation: T) where T : Executor {
 
-        print(#function)
+        guard let _operation = operation as? AsyncOperation else {
+            XCTAssert(true)
+            return
+        }
+
+        XCTAssert(_operation.isCancelled == false)
+        XCTAssert(_operation.isReady == false)
+        XCTAssert(_operation.isFinished == false)
+        XCTAssert(_operation.isExecuting == true)
     }
 
-    func did<T>(finish operation: T) where T : AsyncOperation {
-        print(#function)
+    func did<T>(cancel operation: T) where T : Executor {
+
+        guard let _operation = operation as? AsyncOperation else {
+            XCTAssert(true)
+            return
+        }
+
+        XCTAssert(_operation.isCancelled == true)
+        XCTAssert(_operation.isReady == false)
+        XCTAssert(_operation.isFinished == false)
+        XCTAssert(_operation.isExecuting == false)
     }
 
-    func did<T>(cancel operation: T) where T : AsyncOperation {
-        print(#function)
-    }
+    func did<T>(finish operation: T) where T : Executor {
 
+        guard let _operation = operation as? AsyncOperation else {
+            XCTAssert(true)
+            return
+        }
 
-    func did(becomeReady operation: AsyncOperation) {
-        XCTAssert(operation.isCancelled == false)
-        XCTAssert(operation.isReady == true)
-        XCTAssert(operation.isFinished == false)
-        XCTAssert(operation.isExecuting == false)
-    }
-    
-    func did(start operation: AsyncOperation) {
-        XCTAssert(operation.isCancelled == false)
-        XCTAssert(operation.isReady == false)
-        XCTAssert(operation.isFinished == false)
-        XCTAssert(operation.isExecuting == true)
-    }
-    
-    func did(cancel operation: AsyncOperation) {
-        XCTAssert(operation.isCancelled == true)
-        XCTAssert(operation.isReady == false)
-        XCTAssert(operation.isFinished == false)
-        XCTAssert(operation.isExecuting == false)
-    }
-    
-    func did(finish operation: AsyncOperation) {
-        XCTAssert(operation.isCancelled == false)
-        XCTAssert(operation.isReady == false)
-        XCTAssert(operation.isFinished == true)
-        XCTAssert(operation.isExecuting == false)
+        XCTAssert(_operation.isCancelled == false)
+        XCTAssert(_operation.isReady == false)
+        XCTAssert(_operation.isFinished == true)
+        XCTAssert(_operation.isExecuting == false)
     }
 }
 
@@ -246,32 +262,50 @@ enum TestEnumObserver : Int, ExecutorObserver {
     
     case startup
     
-    func did(becomeReady operation: AsyncOperation) {
-        XCTAssert(operation.isCancelled == false)
-        XCTAssert(operation.isReady == true)
-        XCTAssert(operation.isFinished == false)
-        XCTAssert(operation.isExecuting == false)
+    func did<T : Executor>(becomeReady operation: T) {
+        guard let _operation = operation as? AsyncOperation else {
+            XCTAssert(true)
+            return
+        }
+        XCTAssert(_operation.isCancelled == false)
+        XCTAssert(_operation.isReady == true)
+        XCTAssert(_operation.isFinished == false)
+        XCTAssert(_operation.isExecuting == false)
     }
     
-    func did(start operation: AsyncOperation) {
-        XCTAssert(operation.isCancelled == false)
-        XCTAssert(operation.isReady == false)
-        XCTAssert(operation.isFinished == false)
-        XCTAssert(operation.isExecuting == true)
+    func did<T : Executor>(start operation: T) {
+
+        guard let _operation = operation as? AsyncOperation else {
+            XCTAssert(true)
+            return
+        }
+
+        XCTAssert(_operation.isCancelled == false)
+        XCTAssert(_operation.isReady == false)
+        XCTAssert(_operation.isFinished == false)
+        XCTAssert(_operation.isExecuting == true)
     }
     
-    func did(cancel operation: AsyncOperation) {
-        XCTAssert(operation.isCancelled == true)
-        XCTAssert(operation.isReady == false)
-        XCTAssert(operation.isFinished == false)
-        XCTAssert(operation.isExecuting == false)
+    func did<T : Executor>(cancel operation: T) {
+        guard let _operation = operation as? AsyncOperation else {
+            XCTAssert(true)
+            return
+        }
+        XCTAssert(_operation.isCancelled == true)
+        XCTAssert(_operation.isReady == false)
+        XCTAssert(_operation.isFinished == false)
+        XCTAssert(_operation.isExecuting == false)
     }
     
-    func did(finish operation: AsyncOperation) {
-        XCTAssert(operation.isCancelled == false)
-        XCTAssert(operation.isReady == false)
-        XCTAssert(operation.isFinished == true)
-        XCTAssert(operation.isExecuting == false)
+    func did<T: Executor>(finish operation: T) {
+        guard let _operation = operation as? AsyncOperation else {
+            XCTAssert(true)
+            return
+        }
+        XCTAssert(_operation.isCancelled == false)
+        XCTAssert(_operation.isReady == false)
+        XCTAssert(_operation.isFinished == true)
+        XCTAssert(_operation.isExecuting == false)
     }
 }
 
