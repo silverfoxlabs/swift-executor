@@ -18,7 +18,7 @@ public class ComputeOperation : Async {
     var result : Int = 0
     var action : Action = .add
 
-    init(first: Int, second: Int, identifier: String, action: Action = Action.add, status: Closure? = nil) {
+    init(first: Int, second: Int, identifier: String, action: Action = Action.add, status: ReadyStatus? = nil) {
 
         if let _status = status {
             super.init(identifier: identifier, readyStatus: _status)
@@ -31,18 +31,10 @@ public class ComputeOperation : Async {
         self.action = action
     }
 
-    public func execute() {
+    public override func execute() {
 
         print(#function)
 
-
-        if isReady == false {
-            print("You must set the ready to true")
-            return
-        }
-
-
-        print(#function)
         switch action {
         case .add:
             do {

@@ -8,11 +8,18 @@
 
 import Foundation
 
+
+/// Create an Async for a concurrent operation
 open class Async : Operation, Executor {
     
+    /// A closure type that returns a Bool
     public typealias ReadyStatus = () -> Bool
+
+    /// A closure type that returns Void
     public typealias Closure = () -> Void
 
+
+    /// Set the Async operation ready status, maps to the @see isReady property.
     public var readyStatus : ReadyStatus = { return true } {
         didSet {
             checkReadyStatus()
@@ -153,7 +160,7 @@ open class Async : Operation, Executor {
         execute()
     }
 
-    public func execute() {
+    open func execute() {
         finish()
     }
 
