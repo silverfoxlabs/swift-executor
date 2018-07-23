@@ -4,7 +4,7 @@ import Foundation
 //Examples coming soon.
 import ExecutorKit
 
-public final class ComputeOperation : AsyncOperation {
+public class ComputeOperation : Async {
 
     public enum Action {
         case add
@@ -18,14 +18,29 @@ public final class ComputeOperation : AsyncOperation {
     var result : Int = 0
     var action : Action = .add
 
-    convenience init(first: Int, second: Int, identifier: String, action: Action = Action.add) {
-        self.init(identifier: identifier)
+    init(first: Int, second: Int, identifier: String, action: Action = Action.add, status: Closure? = nil) {
+
+        if let _status = status {
+            super.init(identifier: identifier, readyStatus: _status)
+        } else {
+            super.init(identifier: identifier)
+        }
+
         self.first = first
         self.second = second
         self.action = action
     }
 
-    public override func execute() {
+    public func execute() {
+
+        print(#function)
+
+
+        if isReady == false {
+            print("You must set the ready to true")
+            return
+        }
+
 
         print(#function)
         switch action {
@@ -55,46 +70,45 @@ public final class ComputeOperation : AsyncOperation {
     }
 }
 
+//Working with isReady
+public class PomputeOp : ComputeOperation {
+    var manuallySetToReady = false
+
+    public override var isReady: Bool {
+        return manuallySetToReady
+    }
+}
+
 //Observer usage
 struct ComputeObserver : ExecutorObserver {
-
-    func did<T>(start operation: T) where T : Executor {
-
+    func did(becomeReady operation: Executor) {
         print(#function)
     }
 
-    func did<T>(cancel operation: T) where T : Executor {
+    func did(start operation: Executor) {
         print(#function)
     }
 
-    func did<T>(finish operation: T) where T : Executor {
-
+    func did(finish operation: Executor) {
         print(#function)
-        guard let op = operation as? ComputeOperation else {
-            return
-        }
-
-        print(op.action)
-        print(op.result)
     }
 
-    func did<T>(becomeReady operation: T) where T : Executor {
-
+    func did(cancel operation: Executor) {
         print(#function)
     }
 }
 
-let operation = ComputeOperation(first: 5,
+var operation = ComputeOperation(first: 5,
                                  second: 2,
                                  identifier: "compute.add")
 
-operation.didFinish = { [weak operation] in
-    print(operation?.result ?? "Null")
-}
-
 operation.completionBlock = {
-    print("hello!")
+    print("Completion Block")
+
+    let p = Activity(execute: {print("Awesome this works!")})
+    p.run(())
 }
 
-operation.add(observer: ComputeObserver())
 operation.start()
+
+

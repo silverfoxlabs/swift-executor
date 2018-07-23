@@ -10,26 +10,61 @@ var queue : OperationQueue = {
 
 class swift_executorTests: XCTestCase {
 
+    let operationId = "operation"
+    let classObserverId = "class"
+    let structObserverId = "struct"
+    let timeoutId = "operationTimeout"
+
     func testAsyncOperationCanChangeState() -> Void {
         
-        let op = TestOperation(testValue: "mytestvalue")
-        let first = TestClassObserver(testValue: "class")
-        let second = TestStructObserver(testValue: "struct")
+        let op = TestOperation(identifier: operationId)
+        let first = TestClassObserver(testValue: classObserverId)
+        let second = TestStructObserver(testValue: structObserverId)
         let third = TestEnumObserver.startup
 
         op.add(observer: first)
         op.add(observer: second)
         op.add(observer: third)
 
+        exp = expectation(description: timeoutId)
 
-        exp = expectation(description: "operationTimeout")
         op.completionBlock = {
+
             exp?.fulfill()
         }
         queue.addOperation(op)
         
-        waitForExpectations(timeout: 60) { (e: Error?) in
+        waitForExpectations(timeout: 3) { (e: Error?) in
            
+            if let _ = e {
+                XCTAssertFalse(true)
+            }
+        }
+    }
+
+    func testThatOperationCanBecomeReady() -> Void {
+
+        let op = TestOperation(identifier: operationId) {
+            return false
+        }
+
+        XCTAssert(op.isReady == false)
+
+        op.readyStatus = {
+            return true
+        }
+
+        XCTAssert(op.isReady == true)
+
+        exp = expectation(description: timeoutId)
+        op.completionBlock = {
+
+            exp?.fulfill()
+        }
+        queue.addOperation(op)
+
+        waitForExpectations(timeout: 3) { (e: Error?) in
+
             if let _ = e {
                 XCTAssertFalse(true)
             }
@@ -38,9 +73,9 @@ class swift_executorTests: XCTestCase {
     
     func testThatCanAddObserver() -> Void {
         
-        let op = TestOperation(testValue: "mytestvalue")
-        let first = TestClassObserver(testValue: "class")
-        let second = TestStructObserver(testValue: "struct")
+        let op = TestOperation(identifier: operationId)
+        let first = TestClassObserver(testValue: classObserverId)
+        let second = TestStructObserver(testValue: structObserverId)
         let third = TestEnumObserver.startup
         
         op.add(observer: first)
@@ -60,9 +95,9 @@ class swift_executorTests: XCTestCase {
 
     func testThatCanRemoveObserver() -> Void {
 
-        let op = TestOperation(testValue: "mytestvalue")
-        let first = TestClassObserver(testValue: "class")
-        let second = TestStructObserver(testValue: "struct")
+        let op = TestOperation(identifier: operationId)
+        let first = TestClassObserver(testValue: classObserverId)
+        let second = TestStructObserver(testValue: structObserverId)
         let third = TestEnumObserver.startup
 
         op.add(observer: first)
@@ -89,15 +124,15 @@ class swift_executorTests: XCTestCase {
     
     func testThatCanCancel() -> Void {
         
-        let op = TestOperation(testValue: "mytestvalue")
-        let obs = TestClassObserver(testValue: "class")
+        let op = TestOperation(identifier: operationId)
+        let obs = TestClassObserver(testValue: classObserverId)
         op.add(observer: obs)
         op.cancel()
-        XCTAssertTrue(op.isCancelled == true)
+        XCTAssertTrue(op.isFinished == true)
     }
     
     func testThatCanUseClosures() -> Void {
-        let op = TestOperation(testValue: "mytestvalue")
+        let op = TestOperation(identifier: operationId)
         op.didBecomeReady = { [weak op] in
             XCTAssert(op?.isReady == true)
         }
@@ -114,7 +149,7 @@ class swift_executorTests: XCTestCase {
     
     func testThatCanCancelWithClosure() -> Void {
         
-        let op = TestOperation(testValue: "mytestvalue")
+        let op = TestOperation(identifier: operationId)
         op.didCancel = { [weak op] in
             XCTAssert(op?.isCancelled == true)
         }
@@ -130,12 +165,7 @@ class swift_executorTests: XCTestCase {
     }
 }
 
-public class TestOperation: AsyncOperation {
-    
-    init(testValue : String) {
-        
-        super.init(identifier: testValue)
-    }
+public class TestOperation: Async {
 
     public override func execute() {
         print(#function)
@@ -145,7 +175,9 @@ public class TestOperation: AsyncOperation {
         XCTAssert(isExecuting == true)
 
         finish()
+
     }
+
 
     override public func finish() {
         super.finish()
@@ -167,28 +199,52 @@ class TestClassObserver: ExecutorObserver {
     }
 
 
-    func did(becomeReady operation: AsyncOperation) {
+    func did(becomeReady operation: Executor) {
+
+        guard let operation = operation as? Async else {
+            XCTAssert(true)
+            return
+        }
+
         XCTAssert(operation.isCancelled == false)
         XCTAssert(operation.isReady == true)
         XCTAssert(operation.isFinished == false)
         XCTAssert(operation.isExecuting == false)
     }
     
-    func did(start operation: AsyncOperation) {
+    func did(start operation: Executor) {
+
+        guard let operation = operation as? Async else {
+            XCTAssert(true)
+            return
+        }
+
         XCTAssert(operation.isCancelled == false)
         XCTAssert(operation.isReady == false)
         XCTAssert(operation.isFinished == false)
         XCTAssert(operation.isExecuting == true)
     }
     
-    func did(cancel operation: AsyncOperation) {
+    func did(cancel operation: Executor) {
+
+        guard let operation = operation as? Async else {
+            XCTAssert(true)
+            return
+        }
+
         XCTAssert(operation.isCancelled == true)
         XCTAssert(operation.isReady == false)
         XCTAssert(operation.isFinished == false)
         XCTAssert(operation.isExecuting == false)
     }
     
-    func did(finish operation: AsyncOperation) {
+    func did(finish operation: Executor) {
+
+        guard let operation = operation as? Async else {
+            XCTAssert(true)
+            return
+        }
+
         XCTAssert(operation.isCancelled == false)
         XCTAssert(operation.isReady == false)
         XCTAssert(operation.isFinished == true)
@@ -204,9 +260,8 @@ struct TestStructObserver : ExecutorObserver {
         name = testValue
     }
 
-    func did<T>(becomeReady operation: T) where T : Executor {
-
-        guard let _operation = operation as? AsyncOperation else {
+    func did(becomeReady operation: Executor) {
+        guard let _operation = operation as? Async else {
             XCTAssert(true)
             return
         }
@@ -216,36 +271,9 @@ struct TestStructObserver : ExecutorObserver {
         XCTAssert(_operation.isFinished == false)
         XCTAssert(_operation.isExecuting == false)
     }
+    func did(finish operation: Executor) {
 
-    func did<T>(start operation: T) where T : Executor {
-
-        guard let _operation = operation as? AsyncOperation else {
-            XCTAssert(true)
-            return
-        }
-
-        XCTAssert(_operation.isCancelled == false)
-        XCTAssert(_operation.isReady == false)
-        XCTAssert(_operation.isFinished == false)
-        XCTAssert(_operation.isExecuting == true)
-    }
-
-    func did<T>(cancel operation: T) where T : Executor {
-
-        guard let _operation = operation as? AsyncOperation else {
-            XCTAssert(true)
-            return
-        }
-
-        XCTAssert(_operation.isCancelled == true)
-        XCTAssert(_operation.isReady == false)
-        XCTAssert(_operation.isFinished == false)
-        XCTAssert(_operation.isExecuting == false)
-    }
-
-    func did<T>(finish operation: T) where T : Executor {
-
-        guard let _operation = operation as? AsyncOperation else {
+        guard let _operation = operation as? Async else {
             XCTAssert(true)
             return
         }
@@ -255,6 +283,31 @@ struct TestStructObserver : ExecutorObserver {
         XCTAssert(_operation.isFinished == true)
         XCTAssert(_operation.isExecuting == false)
     }
+
+    func did(start operation: Executor) {
+
+        guard let _operation = operation as? Async else {
+            XCTAssert(true)
+            return
+        }
+
+        XCTAssert(_operation.isCancelled == false)
+        XCTAssert(_operation.isReady == false)
+        XCTAssert(_operation.isFinished == false)
+        XCTAssert(_operation.isExecuting == true)
+    }
+    func did(cancel operation: Executor) {
+
+        guard let _operation = operation as? Async else {
+            XCTAssert(true)
+            return
+        }
+
+        XCTAssert(_operation.isCancelled == true)
+        XCTAssert(_operation.isReady == false)
+        XCTAssert(_operation.isFinished == false)
+        XCTAssert(_operation.isExecuting == false)
+    }
 }
 
 
@@ -262,8 +315,8 @@ enum TestEnumObserver : Int, ExecutorObserver {
     
     case startup
     
-    func did<T : Executor>(becomeReady operation: T) {
-        guard let _operation = operation as? AsyncOperation else {
+    func did(becomeReady operation: Executor) {
+        guard let _operation = operation as? Async else {
             XCTAssert(true)
             return
         }
@@ -273,9 +326,9 @@ enum TestEnumObserver : Int, ExecutorObserver {
         XCTAssert(_operation.isExecuting == false)
     }
     
-    func did<T : Executor>(start operation: T) {
+    func did(start operation: Executor) {
 
-        guard let _operation = operation as? AsyncOperation else {
+        guard let _operation = operation as? Async else {
             XCTAssert(true)
             return
         }
@@ -286,8 +339,8 @@ enum TestEnumObserver : Int, ExecutorObserver {
         XCTAssert(_operation.isExecuting == true)
     }
     
-    func did<T : Executor>(cancel operation: T) {
-        guard let _operation = operation as? AsyncOperation else {
+    func did(cancel operation: Executor) {
+        guard let _operation = operation as? Async else {
             XCTAssert(true)
             return
         }
@@ -297,8 +350,8 @@ enum TestEnumObserver : Int, ExecutorObserver {
         XCTAssert(_operation.isExecuting == false)
     }
     
-    func did<T: Executor>(finish operation: T) {
-        guard let _operation = operation as? AsyncOperation else {
+    func did(finish operation: Executor) {
+        guard let _operation = operation as? Async else {
             XCTAssert(true)
             return
         }

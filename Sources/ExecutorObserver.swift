@@ -10,16 +10,9 @@ import Foundation
 
 public protocol ExecutorObserver {
 
-    func did<T : Executor>(becomeReady operation: T) -> Void
-    func did<T : Executor>(start operation: T) -> Void
-    func did<T : Executor>(finish operation : T) -> Void
-    func did<T : Executor>(cancel operation: T) -> Void
-}
+    func did(becomeReady operation: Executor) -> Void
+    func did(start operation: Executor) -> Void
+    func did(finish operation : Executor) -> Void
+    func did(cancel operation: Executor) -> Void
 
-public extension ExecutorObserver {
-
-    func did<T : Executor>(becomeReady operation: T) -> Void {}
-    func did<T : Executor>(start operation: T) -> Void {}
-    func did<T : Executor>(finish operation : T) -> Void {}
-    func did<T : Executor>(cancel operation: T) -> Void {}
 }

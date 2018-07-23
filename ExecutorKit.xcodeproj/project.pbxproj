@@ -21,7 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		OBJ_24 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_8 /* AsyncOperation.swift */; };
+		6688C4E120E273720056D98D /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688C4E020E273720056D98D /* Activity.swift */; };
+		OBJ_24 /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_8 /* Async.swift */; };
 		OBJ_25 /* Executor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Executor.swift */; };
 		OBJ_26 /* ExecutorObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* ExecutorObserver.swift */; };
 		OBJ_27 /* NSLock+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* NSLock+Extensions.swift */; };
@@ -40,13 +41,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6688C4E020E273720056D98D /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		"ExecutorKit::ExecutorKit::Product" /* ExecutorKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ExecutorKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"ExecutorKit::swift-executorTests::Product" /* swift-executorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = "swift-executorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* ExecutorObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecutorObserver.swift; sourceTree = "<group>"; };
 		OBJ_11 /* NSLock+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLock+Extensions.swift"; sourceTree = "<group>"; };
 		OBJ_14 /* swift_executorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swift_executorTests.swift; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		OBJ_8 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		OBJ_8 /* Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
 		OBJ_9 /* Executor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Executor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,10 +109,11 @@
 		OBJ_7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_8 /* AsyncOperation.swift */,
+				OBJ_8 /* Async.swift */,
 				OBJ_9 /* Executor.swift */,
 				OBJ_10 /* ExecutorObserver.swift */,
 				OBJ_11 /* NSLock+Extensions.swift */,
+				6688C4E020E273720056D98D /* Activity.swift */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;
@@ -197,7 +200,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_24 /* AsyncOperation.swift in Sources */,
+				6688C4E120E273720056D98D /* Activity.swift in Sources */,
+				OBJ_24 /* Async.swift in Sources */,
 				OBJ_25 /* Executor.swift in Sources */,
 				OBJ_26 /* ExecutorObserver.swift in Sources */,
 				OBJ_27 /* NSLock+Extensions.swift in Sources */,

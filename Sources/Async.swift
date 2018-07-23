@@ -8,41 +8,45 @@
 
 import Foundation
 
-open class AsyncOperation : Operation, Executor {
-
+open class Async : Operation, Executor {
+    
+    public typealias ReadyStatus = () -> Bool
     public typealias Closure = () -> Void
 
-    public var didBecomeReady : Closure?
-    public var didStart : Closure?
-    public var didCancel : Closure?
-    public var didFinish : Closure?
+    public var readyStatus : ReadyStatus = { return true } {
+        didSet {
+            checkReadyStatus()
+        }
+    }
+    public var didBecomeReady : Closure = {}
+    public var didStart : Closure = {}
+    public var didFinish : Closure = {}
+    public var didCancel : Closure = {}
 
     public var observers: Array<ExecutorObserver> = []
 
     private let _stateLock : NSLock = NSLock()
     
     fileprivate enum State : CustomStringConvertible {
-        case ready, cancelled, executing, finished
-        
-        fileprivate var description: String {
+
+        case initialized, ready, cancelled, executing, finished
+
+        var description: String { return self.path }
+
+        var path : String {
             switch self {
+            case .initialized:
+                return "isInitialized"
             case .ready:
-                return KVO.IsReadyKeyPath
-            case .executing:
-                return KVO.IsExecutingKeyPath
-            case .finished:
-                return KVO.IsFinishedKeyPath
+                return "isReady"
             case .cancelled:
-                return KVO.IsCancelled
+                return "isCancelled"
+            case .finished:
+                return "isFinished"
+            case .executing:
+                return "isExecuting"
             }
         }
-    }
-    
-    fileprivate struct KVO {
-        static let IsReadyKeyPath : String = "isReady"
-        static let IsExecutingKeyPath : String = "isExecuting"
-        static let IsFinishedKeyPath : String = "isFinished"
-        static let IsCancelled : String = "isCancelled"
     }
 
     private(set) var identifier : String
@@ -50,35 +54,32 @@ open class AsyncOperation : Operation, Executor {
     //Overrides
     override open var isAsynchronous: Bool { return true }
     
-    fileprivate var _state: State = .ready {
+    fileprivate var _state: State = .initialized {
         willSet {
             
             let _ = _stateLock.criticalScope {
                 
-                self.willChangeValue(forKey: newValue.description)
-                self.willChangeValue(forKey: self._state.description)
+                self.willChangeValue(forKey: newValue.path)
+                self.willChangeValue(forKey: self._state.path)
             }
         }
         didSet {
             
             let _ = _stateLock.criticalScope {
                 
-                self.didChangeValue(forKey: oldValue.description)
-                self.didChangeValue(forKey: self._state.description)
+                self.didChangeValue(forKey: oldValue.path)
+                self.didChangeValue(forKey: self._state.path)
                 
             }
             
             switch _state {
             case .ready:
-                didBecomeReady?()
                 observers.forEach { $0.did(becomeReady: self) }
                 break
             case .executing:
-                didStart?()
                 observers.forEach { $0.did(start: self) }
                 break
             case .finished:
-                didFinish?()
                 observers.forEach { $0.did(finish: self) }
                 break
             case .cancelled:
@@ -88,10 +89,9 @@ open class AsyncOperation : Operation, Executor {
                  even if the operation did not completely
                  finish its task.
                  */
-                didCancel?()
                 observers.forEach { $0.did(cancel: self) }
-                didFinish?()
-                observers.forEach { $0.did(finish: self) }
+                break
+            default:
                 break
             }
         }
@@ -108,67 +108,86 @@ open class AsyncOperation : Operation, Executor {
     open override var isFinished: Bool {
         return _state == .finished
     }
-    
+
     open override var isExecuting: Bool {
         return _state == .executing
     }
     
     public init(identifier: String) {
+        self.identifier = identifier
+        super.init()
+        checkReadyStatus()
+    }
+
+    public init(identifier: String, readyStatus : @escaping ReadyStatus) {
 
         self.identifier = identifier
         super.init()
-
+        
+        self.readyStatus = readyStatus
     }
-    
+
+    private func checkReadyStatus() -> Void {
+
+        if self.readyStatus() == true {
+            self._state = .ready
+            return
+        }
+    }
+
     deinit {
         observers.removeAll()
     }
 
-    open func execute() {
-        //no-op
+    open override func main() {
+        start()
     }
 
-    open override func main() {
-        //no-op
-    }
-    
-    override open func cancel() {
-        super.cancel()
-        _state = .cancelled
-    }
-    
     override open func start() {
         
-        if isCancelled {
+        if isCancelled || isReady == false {
             return
         }
 
         _state = .executing
         execute()
     }
-    
+
+    public func execute() {
+        finish()
+    }
+
     public func finish() {
         _state = .finished
     }
 
-    public func remove<T>(observer: T) where T : ExecutorObserver {
-        //Override this function in your subclass for custom behaviour.
-    }
-
-    public func remove<T>(observer: T) where T : ExecutorObserver, T : Equatable {
-        self.observers.removeAll { (obs) -> Bool in
-
-            guard let _obs = obs as? T else { return false }
-            return _obs == observer
-        }
-    }
-
-    public func removeAllObservers() {
-        observers.removeAll()
-    }
-
-    public func add<T>(observer: T) where T : ExecutorObserver {
-        observers.append(observer)
+    override open func cancel() {
+        super.cancel()
+        _state = .cancelled
+        _state = .finished
     }
 
 }
+
+public extension Async {
+
+    func remove<T : ExecutorObserver>(observer : T) where T : Equatable {
+
+        observers.removeAll { (obs: ExecutorObserver) -> Bool in
+
+            guard let _obs = obs as? T else { return false }
+            return observer == _obs
+        }
+    }
+
+    func removeAllObservers() -> Void {
+        observers.removeAll()
+    }
+
+    func add(observer: ExecutorObserver) -> Void {
+        observers.append(observer)
+    }
+    
+}
+
+
