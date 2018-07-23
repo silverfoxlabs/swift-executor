@@ -103,4 +103,13 @@ operation.completionBlock = {
 
 operation.start()
 
+//Overriding isReady example
+let op = ComputeOperation(first: 3, second: 4, identifier: "test", action: .divide, status: { return false })
 
+op.add(observer: ComputeObserver())
+
+op.readyStatus = {
+    return true
+}
+
+op.start()
