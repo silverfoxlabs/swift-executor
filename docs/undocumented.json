@@ -1,0 +1,250 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Activity.swift",
+      "line": 14,
+      "symbol": "Activity.ClosureType",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Activity.swift",
+      "line": 16,
+      "symbol": "Activity.run",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Activity.swift",
+      "line": 18,
+      "symbol": "Activity.init(execute:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Async.swift",
+      "line": 28,
+      "symbol": "Async.didBecomeReady",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Async.swift",
+      "line": 29,
+      "symbol": "Async.didStart",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Async.swift",
+      "line": 30,
+      "symbol": "Async.didFinish",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Async.swift",
+      "line": 31,
+      "symbol": "Async.didCancel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Async.swift",
+      "line": 33,
+      "symbol": "Async.observers",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Async.swift",
+      "line": 62,
+      "symbol": "Async.isAsynchronous",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Async.swift",
+      "line": 107,
+      "symbol": "Async.isReady",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Async.swift",
+      "line": 111,
+      "symbol": "Async.isCancelled",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Async.swift",
+      "line": 115,
+      "symbol": "Async.isFinished",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Async.swift",
+      "line": 119,
+      "symbol": "Async.isExecuting",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Async.swift",
+      "line": 123,
+      "symbol": "Async.init(identifier:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Async.swift",
+      "line": 129,
+      "symbol": "Async.init(identifier:readyStatus:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Async.swift",
+      "line": 149,
+      "symbol": "Async.main()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Async.swift",
+      "line": 153,
+      "symbol": "Async.start()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Async.swift",
+      "line": 163,
+      "symbol": "Async.execute()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Async.swift",
+      "line": 167,
+      "symbol": "Async.finish()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Async.swift",
+      "line": 171,
+      "symbol": "Async.cancel()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Async.swift",
+      "line": 181,
+      "symbol": "Async.remove(observer:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Async.swift",
+      "line": 190,
+      "symbol": "Async.removeAllObservers()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Async.swift",
+      "line": 194,
+      "symbol": "Async.add(observer:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Executor.swift",
+      "line": null,
+      "symbol": "Executor",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Executor.swift",
+      "line": 11,
+      "symbol": "Executor",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Executor.swift",
+      "line": 13,
+      "symbol": "Executor.observers",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Executor.swift",
+      "line": 14,
+      "symbol": "Executor.execute()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Executor.swift",
+      "line": 15,
+      "symbol": "Executor.finish()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/Executor.swift",
+      "line": 20,
+      "symbol": "Executor.execute()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/ExecutorObserver.swift",
+      "line": 11,
+      "symbol": "ExecutorObserver",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/ExecutorObserver.swift",
+      "line": 13,
+      "symbol": "ExecutorObserver.did(becomeReady:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/ExecutorObserver.swift",
+      "line": 14,
+      "symbol": "ExecutorObserver.did(start:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/ExecutorObserver.swift",
+      "line": 15,
+      "symbol": "ExecutorObserver.did(finish:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/ExecutorObserver.swift",
+      "line": 16,
+      "symbol": "ExecutorObserver.did(cancel:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dcilia/Dev/_apps/swift-executor/Sources/NSLock+Extensions.swift",
+      "line": 13,
+      "symbol": "NSLock.criticalScope(closure:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/dcilia/Dev/_apps/swift-executor"
+}
