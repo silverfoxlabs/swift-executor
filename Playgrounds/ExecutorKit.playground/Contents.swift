@@ -113,3 +113,17 @@ op.readyStatus = {
 }
 
 op.start()
+
+//NSLock Extension example:
+let lock = NSLock() //create a lock
+let value = lock.criticalScope(closure: { return 3 })
+print(value)
+
+//Activity.swift Example
+let activity = Activity(execute: {(first : String, last: String) -> String in
+    return first + " " + last
+})
+
+let fullName = activity.run(("Silver", "Fox"))
+print(fullName)
+
