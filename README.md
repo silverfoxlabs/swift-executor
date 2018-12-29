@@ -26,7 +26,7 @@ add to your ```Package.swift```:
 
 ```
 dependencies: [
-   .Package(url: "https://github.com/dcilia
+   .Package(url: "https://github.com/silverfoxlabs
    /swift-executor", majorVersion: 1, minor: 1)
 ])
 ```
@@ -35,7 +35,7 @@ dependencies: [
 Add to your ```Cartfile```
 
 ```
-github "dcilia/swift-executor"
+github "silverfoxlabs/swift-executor"
 ```
 
 
@@ -43,7 +43,7 @@ github "dcilia/swift-executor"
 
 in your ```Podfile```:
 
-```pod 'swift-executor', :git=> 'https://github.com/dcilia/swift-executor'```
+```pod 'swift-executor', :git=> 'https://github.com/silverfoxlabs/swift-executor'```
 
 # How to use:
 
