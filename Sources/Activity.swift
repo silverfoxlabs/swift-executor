@@ -20,3 +20,4 @@ public struct Activity<T,U> {
         self.run = execute
     }
 }
+

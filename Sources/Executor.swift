@@ -14,14 +14,3 @@ public protocol Executor {
     func execute() -> Void
     func finish() -> Void
 }
-
-public extension Executor {
-
-    func execute() -> Void {
-
-        print("Executor Protocol Extension")
-        print(#function)
-
-        finish()
-    }
-}

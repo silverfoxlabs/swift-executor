@@ -4,7 +4,7 @@ import Foundation
 //Examples coming soon.
 import ExecutorKit
 
-public class ComputeOperation : Async {
+public class ComputeOperation : AsyncOperation {
 
     public enum Action {
         case add
@@ -18,13 +18,10 @@ public class ComputeOperation : Async {
     var result : Int = 0
     var action : Action = .add
 
-    init(first: Int, second: Int, identifier: String, action: Action = Action.add, status: ReadyStatus? = nil) {
+    init(first: Int, second: Int, identifier: String, action: Action = Action.add) {
 
-        if let _status = status {
-            super.init(identifier: identifier, readyStatus: _status)
-        } else {
-            super.init(identifier: identifier)
-        }
+        let obs = ComputeObserver()
+        super.init(identifier: identifier, observer: obs)
 
         self.first = first
         self.second = second
@@ -62,14 +59,6 @@ public class ComputeOperation : Async {
     }
 }
 
-//Working with isReady
-public class PomputeOp : ComputeOperation {
-    var manuallySetToReady = false
-
-    public override var isReady: Bool {
-        return manuallySetToReady
-    }
-}
 
 //Observer usage
 struct ComputeObserver : ExecutorObserver {
@@ -104,26 +93,31 @@ operation.completionBlock = {
 operation.start()
 
 //Overriding isReady example
-let op = ComputeOperation(first: 3, second: 4, identifier: "test", action: .divide, status: { return false })
+let op = ComputeOperation(first: 3, second: 4, identifier: "test", action: .divide)
 
 op.add(observer: ComputeObserver())
 
-op.readyStatus = {
-    return true
-}
-
 op.start()
 
-//NSLock Extension example:
-let lock = NSLock() //create a lock
-let value = lock.criticalScope(closure: { return 3 })
-print(value)
+////NSLock Extension example:
+//let lock = NSLock() //create a lock
+//let value = lock.criticalScope(closure: { return 3 })
+//print(value)
 
 //Activity.swift Example
-let activity = Activity(execute: {(first : String, last: String) -> String in
-    return first + " " + last
-})
+//let activity = Activity(execute: {(first : String, last: String) -> String in
+//    return first + " " + last
+//})
 
-let fullName = activity.run(("Silver", "Fox"))
-print(fullName)
+//let fullName = activity.run(("Silver", "Fox"))
+//print(fullName)
+
+
+//let a = Activity(execute: { return "" })
+//let str = a.run(())
+//
+//let b = Activity(execute: {(a: Int, b: Int) -> Int in
+//    return a + b
+//})
+//let three = b.run((1,2))
 

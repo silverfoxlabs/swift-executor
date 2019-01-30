@@ -9,26 +9,8 @@
 import Foundation
 
 
-/// Create an Async for a concurrent operation
-open class Async : Operation, Executor {
-    
-    /// A closure type that returns a Bool
-    public typealias ReadyStatus = () -> Bool
-
-    /// A closure type that returns Void
-    public typealias Closure = () -> Void
-
-
-    /// Set the Async operation ready status, maps to the @see isReady property.
-    public var readyStatus : ReadyStatus = { return true } {
-        didSet {
-            checkReadyStatus()
-        }
-    }
-    public var didBecomeReady : Closure = {}
-    public var didStart : Closure = {}
-    public var didFinish : Closure = {}
-    public var didCancel : Closure = {}
+/// Concurrent operation
+open class AsyncOperation : Operation, Executor {
 
     public var observers: Array<ExecutorObserver> = []
 
@@ -59,6 +41,11 @@ open class Async : Operation, Executor {
     private(set) var identifier : String
 
     //Overrides
+
+
+    /**
+     When you add an operation to an operation queue, the queue ignores the value of the isAsynchronous property and always calls the start() method from a separate thread. Therefore, if you always run operations by adding them to an operation queue, there is no reason to make them asynchronous.
+     */
     override open var isAsynchronous: Bool { return true }
     
     fileprivate var _state: State = .initialized {
@@ -78,8 +65,11 @@ open class Async : Operation, Executor {
                 self.didChangeValue(forKey: self._state.path)
                 
             }
+
+            print(#function)
             
             switch _state {
+
             case .ready:
                 observers.forEach { $0.did(becomeReady: self) }
                 break
@@ -97,8 +87,10 @@ open class Async : Operation, Executor {
                  finish its task.
                  */
                 observers.forEach { $0.did(cancel: self) }
+                _state = .finished
                 break
-            default:
+            case .initialized:
+                //no-op
                 break
             }
         }
@@ -119,38 +111,37 @@ open class Async : Operation, Executor {
     open override var isExecuting: Bool {
         return _state == .executing
     }
-    
-    public init(identifier: String) {
-        self.identifier = identifier
-        super.init()
-        checkReadyStatus()
-    }
 
-    public init(identifier: String, readyStatus : @escaping ReadyStatus) {
 
-        self.identifier = identifier
-        super.init()
-        
-        self.readyStatus = readyStatus
-    }
+    public init(identifier: String, observer: ExecutorObserver? = nil) {
 
-    private func checkReadyStatus() -> Void {
-
-        if self.readyStatus() == true {
-            self._state = .ready
-            return
+        if let obs = observer {
+            observers.append(obs)
         }
+
+        self.identifier = identifier
+        super.init()
+
+        _state = .ready
+
+        print(#function)
+        print("Observers = \(observers)")
     }
+
 
     deinit {
+        print(#function)
         observers.removeAll()
     }
 
     open override func main() {
+        print(#function)
         start()
     }
 
     override open func start() {
+
+        print(#function)
         
         if isCancelled || isReady == false {
             return
@@ -161,10 +152,12 @@ open class Async : Operation, Executor {
     }
 
     open func execute() {
+        print(#function)
         finish()
     }
 
-    public func finish() {
+    open func finish() {
+        print(#function)
         _state = .finished
     }
 
@@ -176,7 +169,7 @@ open class Async : Operation, Executor {
 
 }
 
-public extension Async {
+public extension AsyncOperation {
 
     func remove<T : ExecutorObserver>(observer : T) where T : Equatable {
 

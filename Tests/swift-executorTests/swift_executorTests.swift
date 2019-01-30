@@ -165,7 +165,7 @@ class swift_executorTests: XCTestCase {
     }
 }
 
-public class TestOperation: Async {
+public class TestOperation: AsyncOperation {
 
     public override func execute() {
         print(#function)
@@ -201,7 +201,7 @@ class TestClassObserver: ExecutorObserver {
 
     func did(becomeReady operation: Executor) {
 
-        guard let operation = operation as? Async else {
+        guard let operation = operation as? AsyncOperation else {
             XCTAssert(true)
             return
         }
@@ -214,7 +214,7 @@ class TestClassObserver: ExecutorObserver {
     
     func did(start operation: Executor) {
 
-        guard let operation = operation as? Async else {
+        guard let operation = operation as? AsyncOperation else {
             XCTAssert(true)
             return
         }
@@ -227,7 +227,7 @@ class TestClassObserver: ExecutorObserver {
     
     func did(cancel operation: Executor) {
 
-        guard let operation = operation as? Async else {
+        guard let operation = operation as? AsyncOperation else {
             XCTAssert(true)
             return
         }
@@ -240,7 +240,7 @@ class TestClassObserver: ExecutorObserver {
     
     func did(finish operation: Executor) {
 
-        guard let operation = operation as? Async else {
+        guard let operation = operation as? AsyncOperation else {
             XCTAssert(true)
             return
         }
@@ -261,7 +261,7 @@ struct TestStructObserver : ExecutorObserver {
     }
 
     func did(becomeReady operation: Executor) {
-        guard let _operation = operation as? Async else {
+        guard let _operation = operation as? AsyncOperation else {
             XCTAssert(true)
             return
         }
@@ -273,7 +273,7 @@ struct TestStructObserver : ExecutorObserver {
     }
     func did(finish operation: Executor) {
 
-        guard let _operation = operation as? Async else {
+        guard let _operation = operation as? AsyncOperation else {
             XCTAssert(true)
             return
         }
@@ -286,7 +286,7 @@ struct TestStructObserver : ExecutorObserver {
 
     func did(start operation: Executor) {
 
-        guard let _operation = operation as? Async else {
+        guard let _operation = operation as? AsyncOperation else {
             XCTAssert(true)
             return
         }
@@ -298,7 +298,7 @@ struct TestStructObserver : ExecutorObserver {
     }
     func did(cancel operation: Executor) {
 
-        guard let _operation = operation as? Async else {
+        guard let _operation = operation as? AsyncOperation else {
             XCTAssert(true)
             return
         }
@@ -316,7 +316,7 @@ enum TestEnumObserver : Int, ExecutorObserver {
     case startup
     
     func did(becomeReady operation: Executor) {
-        guard let _operation = operation as? Async else {
+        guard let _operation = operation as? AsyncOperation else {
             XCTAssert(true)
             return
         }
@@ -328,7 +328,7 @@ enum TestEnumObserver : Int, ExecutorObserver {
     
     func did(start operation: Executor) {
 
-        guard let _operation = operation as? Async else {
+        guard let _operation = operation as? AsyncOperation else {
             XCTAssert(true)
             return
         }
@@ -340,7 +340,7 @@ enum TestEnumObserver : Int, ExecutorObserver {
     }
     
     func did(cancel operation: Executor) {
-        guard let _operation = operation as? Async else {
+        guard let _operation = operation as? AsyncOperation else {
             XCTAssert(true)
             return
         }
@@ -351,7 +351,7 @@ enum TestEnumObserver : Int, ExecutorObserver {
     }
     
     func did(finish operation: Executor) {
-        guard let _operation = operation as? Async else {
+        guard let _operation = operation as? AsyncOperation else {
             XCTAssert(true)
             return
         }
