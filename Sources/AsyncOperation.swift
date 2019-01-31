@@ -87,13 +87,16 @@ open class AsyncOperation : Operation, Executor {
                  finish its task.
                  */
                 observers.forEach { $0.did(cancel: self) }
-                _state = .finished
                 break
             case .initialized:
                 //no-op
                 break
             }
         }
+    }
+
+    open var isInitialized : Bool {
+        return _state == .initialized
     }
     
     open override var isReady: Bool {
@@ -121,47 +124,45 @@ open class AsyncOperation : Operation, Executor {
 
         self.identifier = identifier
         super.init()
-
-        _state = .ready
-
-        print(#function)
-        print("Observers = \(observers)")
     }
 
 
     deinit {
-        print(#function)
         observers.removeAll()
     }
 
     open override func main() {
-        print(#function)
         start()
     }
 
     override open func start() {
 
-        print(#function)
-        
-        if isCancelled || isReady == false {
+        if isInitialized == true {
+            _state = .ready
+        }
+
+        if isReady == false || isCancelled == true {
             return
         }
 
         _state = .executing
+
         execute()
     }
 
     open func execute() {
-        print(#function)
         finish()
     }
 
     open func finish() {
-        print(#function)
-        _state = .finished
+
+        if _state != .finished {
+            _state = .finished
+        }
     }
 
     override open func cancel() {
+
         super.cancel()
         _state = .cancelled
         _state = .finished

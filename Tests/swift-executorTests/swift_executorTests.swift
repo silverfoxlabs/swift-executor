@@ -26,50 +26,17 @@ class swift_executorTests: XCTestCase {
         op.add(observer: second)
         op.add(observer: third)
 
-        exp = expectation(description: timeoutId)
+        let expectation = XCTestExpectation(description: timeoutId)
 
         op.completionBlock = {
+            expectation.fulfill()
+        }
 
-            exp?.fulfill()
-        }
-        queue.addOperation(op)
-        
-        waitForExpectations(timeout: 3) { (e: Error?) in
-           
-            if let _ = e {
-                XCTAssertFalse(true)
-            }
-        }
+        op.start()
+        wait(for: [expectation], timeout: 10)
+
     }
-
-    func testThatOperationCanBecomeReady() -> Void {
-
-        let op = TestOperation(identifier: operationId) {
-            return false
-        }
-
-        XCTAssert(op.isReady == false)
-
-        op.readyStatus = {
-            return true
-        }
-
-        XCTAssert(op.isReady == true)
-
-        exp = expectation(description: timeoutId)
-        op.completionBlock = {
-
-            exp?.fulfill()
-        }
-        queue.addOperation(op)
-
-        waitForExpectations(timeout: 3) { (e: Error?) in
-
-            if let _ = e {
-                XCTAssertFalse(true)
-            }
-        }
-    }
+    
     
     func testThatCanAddObserver() -> Void {
         
@@ -130,32 +97,7 @@ class swift_executorTests: XCTestCase {
         op.cancel()
         XCTAssertTrue(op.isFinished == true)
     }
-    
-    func testThatCanUseClosures() -> Void {
-        let op = TestOperation(identifier: operationId)
-        op.didBecomeReady = { [weak op] in
-            XCTAssert(op?.isReady == true)
-        }
-        op.didStart = { [weak op] in
-            XCTAssert(op?.isExecuting == true)
-        }
-        op.didFinish = { [weak op] in
-            XCTAssert(op?.isFinished == true)
-        }
 
-        op.start()
-        
-    }
-    
-    func testThatCanCancelWithClosure() -> Void {
-        
-        let op = TestOperation(identifier: operationId)
-        op.didCancel = { [weak op] in
-            XCTAssert(op?.isCancelled == true)
-        }
-        op.cancel()
-    }
-    
     static var allTests : [(String, (swift_executorTests) -> () throws -> Void)] {
         return [
             ("testAsyncOperationCanChangeState", testAsyncOperationCanChangeState),
