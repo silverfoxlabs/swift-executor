@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "swift-executor"
-  s.version      = "1.8.6"
+  s.version      = "1.9.0"
   s.summary      = "A lightweight simple implementation of Foundation's Concurrent Operation"
 
   # This description is used to generate tags and improve search results.
@@ -90,6 +90,7 @@ Pod::Spec.new do |s|
   #
 
   s.source_files  = "Sources"
+  s.swift_version = "5.0"
   #s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"

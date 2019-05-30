@@ -21,7 +21,7 @@
 		OBJ_14 /* swift_executorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swift_executorTests.swift; sourceTree = "<group>"; };
 		OBJ_15 /* build */ = {isa = PBXFileReference; lastKnownFileType = folder; path = build; sourceTree = SOURCE_ROOT; };
 		OBJ_17 /* ExecutorKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ExecutorKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_18 /* swift_executorTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; name = swift_executorTests.xctest; path = "swift-executorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_18 /* swift-executorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = "swift-executorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_8 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		OBJ_9 /* Executor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Executor.swift; sourceTree = "<group>"; };
@@ -75,7 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_17 /* ExecutorKit.framework */,
-				OBJ_18 /* swift_executorTests.xctest */,
+				OBJ_18 /* swift-executorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -135,7 +135,7 @@
 			);
 			name = "swift-executorTests";
 			productName = swift_executorTests;
-			productReference = OBJ_18 /* swift_executorTests.xctest */;
+			productReference = OBJ_18 /* swift-executorTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -145,12 +145,21 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 9999;
+				TargetAttributes = {
+					OBJ_19 = {
+						LastSwiftMigration = 1020;
+					};
+					OBJ_29 = {
+						LastSwiftMigration = 1020;
+					};
+				};
 			};
 			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "ExecutorKit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = OBJ_5;
@@ -206,6 +215,7 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = ExecutorKit;
 			};
 			name = Debug;
@@ -229,6 +239,7 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = ExecutorKit;
 			};
 			name = Release;
@@ -244,7 +255,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DXcode";
@@ -270,9 +281,11 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ExecutorKit.xcodeproj/swift_executorTests_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = "swift-executorTests";
 			};
 			name = Debug;
@@ -287,9 +300,11 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ExecutorKit.xcodeproj/swift_executorTests_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
 				TARGET_NAME = "swift-executorTests";
 			};
 			name = Release;
@@ -304,7 +319,7 @@
 				DEFINES_MODULE = YES;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_OPTIMIZATION_LEVEL = s;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_SWIFT_FLAGS = "-DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
