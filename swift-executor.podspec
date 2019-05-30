@@ -89,7 +89,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Sources"
+  s.source_files  = "Sources/ExecutorKit"
   s.swift_version = "5.0"
   #s.exclude_files = "Classes/Exclude"
 

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_19"
+               BlueprintIdentifier = "ExecutorKit::ExecutorKit"
                BuildableName = "ExecutorKit.framework"
                BlueprintName = "ExecutorKit"
                ReferencedContainer = "container:ExecutorKit.xcodeproj">
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_29"
-               BuildableName = "swift-executorTests.xctest"
-               BlueprintName = "swift-executorTests"
+               BlueprintIdentifier = "ExecutorKit::ExecutorKitTests"
+               BuildableName = "ExecutorKitTests.xctest"
+               BlueprintName = "ExecutorKitTests"
                ReferencedContainer = "container:ExecutorKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -55,7 +55,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "OBJ_19"
+            BlueprintIdentifier = "ExecutorKit::ExecutorKit"
             BuildableName = "ExecutorKit.framework"
             BlueprintName = "ExecutorKit"
             ReferencedContainer = "container:ExecutorKit.xcodeproj">
