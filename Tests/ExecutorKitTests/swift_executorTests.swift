@@ -2,6 +2,7 @@ import XCTest
 @testable import ExecutorKit
 
 var exp : XCTestExpectation? = nil
+
 var queue : OperationQueue = {
     let queue = OperationQueue()
     queue.name = "com.executorkit.queue"
@@ -24,6 +25,9 @@ class swift_executorTests: XCTestCase {
         op.completionBlock = {
             exp?.fulfill()
         }
+
+        op.ready()
+
         queue.addOperation(op)
         
         waitForExpectations(timeout: 60) { (e: Error?) in
@@ -61,24 +65,53 @@ class swift_executorTests: XCTestCase {
     }
     
     func testThatCanUseClosures() -> Void {
+
+        let readyKey = "ready"
+        let startKey = "start"
+        let finishKey = "finish"
+
+        var called = [
+
+            readyKey: false,
+            startKey: false,
+            finishKey: false
+        ]
+
+        exp = expectation(description: "closuresExpectations")
+
         let op = TestOperation(testValue: "mytestvalue")
+
         op.didBecomeReady = { op in
 
             print(op.debugDescription)
             XCTAssert(op.isReady == true)
+            called[readyKey] = true
             
         }
         op.didStart = { op in
             print(op.debugDescription)
             XCTAssert(op.isExecuting == true)
+            called[startKey] = true
         }
         op.didFinish = { op in
             print(op.debugDescription)
             XCTAssert(op.isFinished == true)
+            called[finishKey] = true
+            exp?.fulfill()
         }
-        
+
         op.start()
-        
+
+        waitForExpectations(timeout: 10) {
+            if let _ = $0 {
+                XCTAssert(true)
+            }
+
+            XCTAssert(called.count == 3)
+            XCTAssert(called[readyKey] == true)
+            XCTAssert(called[startKey] == true)
+            XCTAssert(called[finishKey] == true)
+        }
     }
     
     func testThatCanCancelWithClosure() -> Void {
