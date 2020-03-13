@@ -2,7 +2,6 @@
 //  NSLock+Extensions.swift
 //  ExecutorKit
 //
-//  Created by dcilia on 10/25/16.
 //
 //
 

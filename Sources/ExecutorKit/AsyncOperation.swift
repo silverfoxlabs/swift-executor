@@ -2,7 +2,6 @@
 //  AsyncOperation.swift
 //  ExecutorKit
 //
-//  Created by dcilia on 10/25/16.
 //
 //
 
@@ -103,23 +102,33 @@ open class AsyncOperation : Operation, Executor {
         return _state == .executing
     }
     
-    public init(identifier: String) {
+    public init(identifier: String, readyToExecute: Bool = false) {
 
         self.identifier = identifier
         super.init()
-        _state = .ready
+
+        if readyToExecute {
+            _state = .ready
+        }
     }
     
-    var didBecomeReady : ((_ operation : AsyncOperation) -> Void)?
-    var didStart : ((_ operation : AsyncOperation) -> Void)?
-    var didFinish : ((_ operation : AsyncOperation) -> Void)?
-    var didCancel : ((_ operation : AsyncOperation) -> Void)?
+    public var didBecomeReady: ((_ operation: AsyncOperation) -> Void)?
+    public var didStart: ((_ operation: AsyncOperation) -> Void)?
+    public var didFinish: ((_ operation: AsyncOperation) -> Void)?
+    public var didCancel: ((_ operation: AsyncOperation) -> Void)?
+
+    public var run: (() -> Void)?
     
     
     deinit {
         observers.removeAll()
     }
     
+    /// If overriding this method, call super when the operation is ready after your custom logic passes the ready state.
+    open func ready() -> Void {
+        _state = .ready
+    }
+
     open func execute() -> Void {}
     
     open override func main() {}
@@ -131,6 +140,12 @@ open class AsyncOperation : Operation, Executor {
     }
     
     override open func start() {
+
+        ready() //set the readiness.  A subclass may have a custom implementation.
+        
+        if isReady == false {
+            fatalError("You must call ready() before calling start or adding to a queue.")
+        }
         
         if isCancelled {
             _state = .finished
@@ -139,6 +154,11 @@ open class AsyncOperation : Operation, Executor {
         
         _state = .executing
         execute()
+
+        if let r = run {
+            r()
+            finish()
+        }
     }
     
     public func finish() {
@@ -146,3 +166,11 @@ open class AsyncOperation : Operation, Executor {
         completionBlock?()
     }
 }
+
+extension AsyncOperation {
+
+    open override var description: String {
+        return "\(self), identifier = \(identifier), state = \(_state.description), observers: \(observers.debugDescription)"
+    }
+}
+

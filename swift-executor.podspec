@@ -16,18 +16,18 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "swift-executor"
-  s.version      = "1.9.0"
-  s.summary      = "A lightweight simple implementation of Foundation's Concurrent Operation"
+  s.version      = "1.9.3"
+  s.summary      = "A lightweight implementation of Foundation's Operation"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = "Swift subclass of NSOperation to manage
+  s.description  = "Swift subclass of NSOperation/Operation to manage
   concurrency.  This works on all platforms, iOS, macOS, tvOS, watchOS"
 
-  s.homepage     = "https://github.com/dcilia/swift-executor"
+  s.homepage     = "https://github.com/silverfoxlabs/swift-executor"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -51,10 +51,10 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "DC" => "mobileproducts@me.com" }
-  # Or just: s.author    = "DC"
-  # s.authors            = { "DC" => "mobileproducts@me.com" }
-  s.social_media_url   = "http://twitter.com/davidcilia"
+  s.author             = { "SFL" => "silverfoxlabs@" }
+  # Or just: s.author    = "A"
+  # s.authors            = { "A" => "a@a.com" }
+  s.social_media_url   = "http://twitter.com/silverfoxlabs"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -78,7 +78,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/dcilia/swift-executor.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/silverfoxlabs/swift-executor.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

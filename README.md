@@ -20,6 +20,10 @@ Leverages ``` Operation ``` & ``` OperationQueue ```.  ``` AsyncOperation ``` is
 
 # Installation:
 
+You can use ```Xcode 11``` and manage packages that way to use Swift SPM.
+
+or...
+
 ***Swift Package Manager:***
 
 add to your ```Package.swift```:
@@ -55,7 +59,8 @@ class Foo : AsyncOperation {
     var bar: String = "Hello World"
     
     override func execute() {
-        super.execute()
+        
+        //Calling super is a no-op.
         
         //Some long running task (or not).
         bar = String(bar.characters.reversed())
@@ -125,4 +130,42 @@ let queue = OperationQueue()
 queue.name = "com.someQueue"
 queue.addOperation(operation)
 ```
+
+## New
+
+Some changes and enhacements:
+
+```AsyncOperation``` now has a ```run``` property.  This can be used as is or part of the custom subclass.  Here is an example:
+
+``` swift
+var op = AsyncOperation(identifier: "com.executorKit.bar",readyToExecute: true)
+
+op.run = {
+    print("Hello World")
+}
+op.add(observer: someObserver)
+
+//Use the "start" or add to an OperationQueue
+var q = OperationQueue()
+q.name = "myqueue"
+q.addOperation(op)
+
+```
+
+```AsyncOperation``` also has closures that can be used for state notification instead of using an observer:
+
+``` swift
+
+op.didStart = {
+    print("did start")
+}
+
+op.didFinish = {
+
+    //do something here
+}
+
+```
+
+Be aware of memory management semantics when using these closures!
    
